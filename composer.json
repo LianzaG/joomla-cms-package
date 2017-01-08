@@ -1,0 +1,49 @@
+
+{
+    "name": "lianzadesign/joomla-cms",
+    "description": "A simple Joomla bootstrap package. Making install a little faster and making projects version controlled from the very start.",
+    "authors": [
+        {
+            "name": "Julien L. Bosuma",
+            "email": "webmaster@lianzadesign.com"
+        },
+        {
+            "name": "LianzaDesign",
+            "email": "contact@lianzadesign.com"
+        }
+    ],
+    "license": "GPL-3.0",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "type": "webroot",
+                "name": "joomla/joomla-cms",
+                "version": "3.6.5",
+                "dist": {
+                    "url": "https://github.com/joomla/joomla-cms/releases/download/3.6.5/Joomla_3.6.5-Stable-Full_Package.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "fancyguy/webroot-installer": "~1.1.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "joomla/joomla-cms": "~3.6.5"
+    },
+    "extra": {
+        "webroot-dir": "tmp_joomla_pack",
+        "webroot-package": "joomla/joomla-cms"
+    },
+    "scripts": {
+        "post-create-project-cmd": "@relocate_joomla",
+        "relocate_joomla": [
+            "@move_to_root",
+            "@remove_tmp_dir"
+            ],
+        "move_to_root": "mv tmp_joomla_pack/* ./",
+        "remove_tmp_dir": "rm -r tmp_joomla_pack/"
+    }
+}
